@@ -40,14 +40,16 @@ const NavBar: React.FC<NavBarProperties> = ({ title, themeToggler }) => {
     <Nav ref={navReference} aria-label="Global Navigation">
       <NavBackground toggle={toggle} />
       <Content>
-        <Title onClick={() => setToggle(false)}>
-          <Link to="/">{title}</Link>
-        </Title>
+        <TitleWrapper>
+          <ThemeToggleButton themeToggler={themeToggler} />
+          <Title onClick={() => setToggle(false)}>
+            <Link to="/">{title}</Link>
+          </Title>
+        </TitleWrapper>
         <LinkWrap>
           <Curtain ref={curtainReference} toggle={toggle} />
           <LinkContent>
             <MenuIcon toggle={toggle} handleClick={handleClick} />
-            <ThemeToggleButton themeToggler={themeToggler} />
             <LinkUl ref={listReference} toggle={toggle}>
               <LinkList links={menuLinks} setToggle={setToggle} />
             </LinkUl>
@@ -68,6 +70,14 @@ const Nav = styled.nav`
   width: 100%;
   height: var(--nav-height);
   z-index: 10;
+
+  @media (max-width: ${({ theme }) => theme.device.md}) {
+    height: var(--nav-height-md);
+  }
+
+  @media (min-width: ${({ theme }) => theme.device.lg}) {
+    justify-content: center;
+  }
 
   a:hover {
     text-decoration: none;
@@ -94,10 +104,21 @@ const Content = styled.div`
   @media (max-width: ${({ theme }) => theme.device.sm}) {
     padding: 0 var(--padding-sm);
   }
+
+  @media (min-width: ${({ theme }) => theme.device.lg}) {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+`
+
+const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  // gap: 1rem;
 `
 
 const Title = styled.h1`
-  z-index: 9999;
+  // z-index: 9999;
   padding: 0;
   border: none;
   font-size: var(--text-title);

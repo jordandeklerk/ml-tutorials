@@ -68,6 +68,14 @@ const Main = styled.main`
   min-width: var(--min-width);
   min-height: calc(100vh - var(--nav-height) - var(--footer-height));
   background-color: var(--color-background);
+
+  @media (max-width: ${({ theme }) => theme.device.md}) {
+    padding: 0 var(--padding-md);
+  }
+
+  @media (max-width: ${({ theme }) => theme.device.sm}) {
+    padding: 0 var(--padding-sm);
+  }
 `
 
 const Content = styled.div`

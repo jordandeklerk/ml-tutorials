@@ -82,20 +82,22 @@ const Text = styled.span`
 const Button = styled.button`
   cursor: pointer;
   box-sizing: border-box;
-  position: fixed;
+  // position: fixed;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: transparent;
   z-index: 100;
-  top: 0.5rem; /* Adjust this value to move the button down */
-  left: 300px;
+  // top: 0.2rem; /* Adjust this value to move the button down */
+  // left: 300px;
   bottom: unset;
   padding: var(--sizing-sm); /* Decrease padding to reduce size */
   padding-right: 2px; /* Adjust as needed */
   border: 1px solid var(--color-floating-button-border);
   border-radius: 50%; /* Ensure it's a circle */
   font-weight: var(--font-weight-medium);
+  margin-right: 1rem;
 
   @media (min-width: ${({ theme }) => theme.device.sm}) {
     &:hover {

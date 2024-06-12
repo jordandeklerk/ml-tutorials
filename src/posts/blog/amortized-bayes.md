@@ -2,8 +2,8 @@
 title: "Closing the Amortization Gap in Bayesian Deep Generative Models"
 category: "Bayesian"
 date: "2024-06-07 12:00:00 +09:00"
-desc: "Implementing Bayesian Neural Networks in PyTorch to close the amortization gap in variational autoencoders"
-thumbnail: "./images/amortized-bayes/vae3.png"
+desc: "A tutorial using Bayesian Neural Networks to close the amortization gap in VAEs"
+thumbnail: "./images/amortized-bayes/vae.png"
 alt: "bayesian neural networks"
 ---
 
@@ -18,7 +18,7 @@ alt: "bayesian neural networks"
     <img src="https://img.shields.io/badge/PyTorch-2.1.1-red.svg" alt="PyTorch">
   </a>
 </div>
-<p style="color: gray; margin-top: 10px;">Estimated Reading Time: 90 minutes</p>
+<p style="color: gray; margin-top: 10px;">Estimated Reading Time: 60 minutes</p>
 
 <details>
   <summary>Table of Contents</summary>
@@ -97,12 +97,12 @@ This paradigm, known as _amortized variational inference_ (A-VI), optimizes the 
 
 Variational Autoencoders (VAEs) belong to a category of machine learning models known as latent variable models. These models operate on the principle that the observable characteristics of data can be derived from a set of underlying, unobservable variables, termed as latent variables. The essence of VAEs is to circumvent the direct construction of a latent space. Instead, these models employ an Encoder-Decoder architecture to access this space indirectly.
 
+<br>
 <figure style="text-align: center;">
   <img src="./images/amortized-bayes/vae.png" alt="Variational Autoencoder Architecture">
   <figcaption style="margin-top: 10px; color: gray;">Figure 1: The architecture of a Variational Autoencoder</figcaption>
 </figure>
-
-<br><br>
+<br>
 
 From Figure 1, we can see that this architecture is split into two major components:
 
@@ -131,12 +131,12 @@ The ELBO is equivalent to the true log likelihood when $q(z | x) = p(z | x)$. Ty
 
 The reparametrization trick was initially introduced in [Kingma](https://arxiv.org/abs/1312.6114). It is important to understand this trick because we need a way to generate samples from $q_{\theta}(z | x)$. Our explanation here follows [this great post](https://gregorygundersen.com/blog/2018/04/29/reparameterization/) very closely.
 
+<br>
 <figure style="text-align: center;">
   <img src="./images/amortized-bayes/reparam.png" alt="Reparameterization Trick">
   <figcaption style="margin-top: 10px; color: gray;">Figure 2: The reparameterization trick illustrated</figcaption>
 </figure>
-
-<br><br>
+<br>
 
 #### Non-differentiable Expectations <a id="non-differentiable-expectations" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
@@ -247,12 +247,12 @@ $$
 
 We determine the best variational parameters $\nu^* = (\nu_0^*, \nu_1^*, \ldots, \nu_N^*)$ by minimizing the KL-divergence shown in Eq. 1.
 
+<br>
 <figure style="text-align: center;">
   <img src="./images/amortized-bayes/avi.png" alt="A-VI explanation">
   <figcaption></figcaption>
 </figure>
-
-<br>
+<br><br>
 
 Assuming $\mathcal{X}$ represents the space of $x_n$, A-VI approximates a function $f_{\phi}: \mathcal{X} \to \mathcal{U}$ across a set of inference functions $\mathcal{F}$, each parameterized by $\phi$. We also minimize the KL-divergence in Eq. 1 with respect to $\phi$ to derive the optimal variational family $\mathcal{Q}_A(\mathcal{F})$. Clearly from Eq. 2 and Eq. 3, $\mathcal{Q}_A(\mathcal{F})$ is a subset of $\mathcal{Q}_F$. This subset relationship is exemplified by considering $x_n = x_m$, which implies $f_{\phi}(x_n) = f_{\phi}(x_m)$, whereas a potential distribution $\tilde{q}(\theta, z) \in \mathcal{Q}_F$ could have $\nu_n \neq \nu_m$, confirming a strict subset.
 
@@ -1102,6 +1102,7 @@ for i in range(5):
 
 Our results, presented in Figure 3 for the MNIST dataset, examine the effects of different network widths and configurations. After 5,000 epochs, our amortized variational inference (A-VI) achieved comparable ELBO values to fixed variational inference (F-VI) with sufficiently deep networks (k ≥ 64). We also evaluated the mean squared error (MSE) for image reconstruction on both the training and testing sets and noted that A-VI effectively bridged the performance gap here too.
 
+<br>
 <figure>
   <div style="display: flex; justify-content: space-between; align-items: center;">
     <div style="flex: 1; padding: 0 10px; text-align: center;">
@@ -1116,22 +1117,22 @@ Our results, presented in Figure 3 for the MNIST dataset, examine the effects of
   </div>
   <figcaption style="text-align: center; margin-top: 10px; color: gray;">Figure 3: Results for the MNIST dataset</figcaption>
 </figure>
-
 <br><br>
 
 Moreover, A-VI proved to be 2 to 3 times faster computationally than F-VI, as seen in Figure 4, underscoring its efficiency in leveraging shared inference computations across data, thus negating the need to estimate unique latent factors $q_n$ for each $z_n$.
 
+<br>
 <figure style="text-align: center;">
   <img src="./images/amortized-bayes//mnist_comp.png" alt="Computation Time MNIST">
   <figcaption style="margin-top: 15px; color: gray;">Figure 4: Computational efficiency of A-VI on MNIST</figcaption>
 </figure>
-
 <br><br>
 
 **FashionMNIST**
 
 Our results for the `FashionMNIST` experiments are presented in Figure 4 and show the same conclusions as the `MNIST` experiments.
 
+<br>
 <figure>
   <div style="display: flex; justify-content: space-between;">
     <div style="flex: 1; padding: 0 10px;">
@@ -1146,20 +1147,20 @@ Our results for the `FashionMNIST` experiments are presented in Figure 4 and sho
   </div>
   <figcaption style="text-align: center; margin-top: 10px; color: gray;">Figure 4: Results for the FashionMNIST dataset</figcaption>
 </figure>
-
 <br><br>
 
 We also see a similar increase in computational speed on the `FashionMNIST` dataset as shown in Figure 5.
 
+<br>
 <figure style="text-align: center;">
   <img src="./images/amortized-bayes//fmnist_comp.png" alt="Computation Time FashionMNIST">
   <figcaption style="margin-top: 10px; color: gray;">Figure 5: Computational efficiency of A-VI on FashionMNIST</figcaption>
 </figure>
-
 <br><br>
 
 In Figure 6, we present reconstructed images for a sample of five original images from the `MNIST` and `FashionMNIST` datasets. It’s important to note that these reconstructions, produced using a linear neural network, exhibit lower visual quality. This outcome, while noticeable, was not the primary focus of our project. Implementing a convolutional neural network for both the encoder and decoder could significantly enhance the aesthetic quality of these images.
 
+<br>
 <figure>
   <div style="display: flex; justify-content: space-between;">
     <div style="flex: 1; padding-right: 15px;">
@@ -1171,7 +1172,6 @@ In Figure 6, we present reconstructed images for a sample of five original image
   </div>
   <figcaption style="text-align: center; margin-top: 10px; color: gray;">Figure 6: Reconstructed images for MNIST and FashionMNIST</figcaption>
 </figure>
-
 <br>
 
 ## Conclusion <a id="conclusion" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
@@ -1186,40 +1186,40 @@ Future research directions could involve exploring more complex neural network a
 
 ## References <a id="references" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
-- Michael I. Jordan et al. "An Introduction to Variational Methods for Graphical Models." Machine Learning, vol. 37, pp. 183-233, 1999.
+[1] Michael I. Jordan et al. "An Introduction to Variational Methods for Graphical Models." Machine Learning, vol. 37, pp. 183-233, 1999.
 
-- Christopher M. Bishop, David Spiegelhalter, John Winn. "Vibes: A Variational Inference Engine for Bayesian Networks." Neural Information Processing Systems, 2002.
+[2] Christopher M. Bishop, David Spiegelhalter, John Winn. "Vibes: A Variational Inference Engine for Bayesian Networks." Neural Information Processing Systems, 2002.
 
-- Andrew Gelman et al. Bayesian Data Analysis. Chapman & Hall/CRC Texts in Statistical Science, 2013.
+[3] Andrew Gelman et al. Bayesian Data Analysis. Chapman & Hall/CRC Texts in Statistical Science, 2013.
 
-- Samuel Gershman, Noah Goodman. "Amortized Inference in Probabilistic Reasoning." Proceedings of the Annual Meeting of the Cognitive Science Society, 2014.
+[4] Samuel Gershman, Noah Goodman. "Amortized Inference in Probabilistic Reasoning." Proceedings of the Annual Meeting of the Cognitive Science Society, 2014.
 
-- D. Rezende, S. Mohamed, D. Wierstra. "Stochastic Backpropagation and Approximate Inference in Deep Generative Models." International Conference on Machine Learning, 2014.
+[5] D. Rezende, S. Mohamed, D. Wierstra. "Stochastic Backpropagation and Approximate Inference in Deep Generative Models." International Conference on Machine Learning, 2014.
 
-- Diederik P. Kingma, Jimmy Ba. "Adam: A Method for Stochastic Optimization." International Conference on Learning Representations, 2015.
+[6] Diederik P. Kingma, Jimmy Ba. "Adam: A Method for Stochastic Optimization." International Conference on Learning Representations, 2015.
 
-- David M. Blei, Alp Kucukelbir, Jon D. McAuliffe. "Variational Inference: A Review for Statisticians." Journal of the American Statistical Association, vol. 112, 2017.
+[7] David M. Blei, Alp Kucukelbir, Jon D. McAuliffe. "Variational Inference: A Review for Statisticians." Journal of the American Statistical Association, vol. 112, 2017.
 
-- Chris Cremer, Xuechen Li, David Duvenaud. "Inference Suboptimality in Variational Autoencoders." International Conference of Machine Learning, 2018.
+[8] Chris Cremer, Xuechen Li, David Duvenaud. "Inference Suboptimality in Variational Autoencoders." International Conference of Machine Learning, 2018.
 
-- Yoon Kim et al. "Semi-Amortized Variational Autoencoders." International Conference on Machine Learning, 2018.
+[9] Yoon Kim et al. "Semi-Amortized Variational Autoencoders." International Conference on Machine Learning, 2018.
 
-- Rui Shu et al. "Amortized Inference Regularization." Neural Information Processing Systems, 2018.
+[10] Rui Shu et al. "Amortized Inference Regularization." Neural Information Processing Systems, 2018.
 
-- Adam Paszke et al. "Pytorch: An Imperative Style, High-Performance Deep Learning Library." Neural Information Processing Systems, 2019.
+[11] Adam Paszke et al. "Pytorch: An Imperative Style, High-Performance Deep Learning Library." Neural Information Processing Systems, 2019.
 
-- Abhinav Agrawal, Justin Domke. "Amortized Variational Inference in Simple Hierarchical Models." Neural Information Processing Systems, 2021.
+[12] Abhinav Agrawal, Justin Domke. "Amortized Variational Inference in Simple Hierarchical Models." Neural Information Processing Systems, 2021.
 
-- Laurent Girin et al. "Dynamical Variational Autoencoders: A Comprehensive Review." Foundations and Trends in Machine Learning, vol. 15, pp. 1-175, 2021.
+[13] Laurent Girin et al. "Dynamical Variational Autoencoders: A Comprehensive Review." Foundations and Trends in Machine Learning, vol. 15, pp. 1-175, 2021.
 
-- Minyoung Kim, Vladmir Pavlovic. "Reducing the Amortization Gap in Variational Autoencoders: A Bayesian Random Function Approach." arXiv:2102.03151, 2021. [URL](https://arxiv.org/abs/2102.03151).
+[14] Minyoung Kim, Vladmir Pavlovic. "Reducing the Amortization Gap in Variational Autoencoders: A Bayesian Random Function Approach." arXiv:2102.03151, 2021. [URL](https://arxiv.org/abs/2102.03151).
 
-- Diederik Kingma, Max Welling. "Auto-Encoding Variational Bayes." 2022. [URL](https://arxiv.org/abs/1312.6114).
+[15] Diederik Kingma, Max Welling. "Auto-Encoding Variational Bayes." 2022. [URL](https://arxiv.org/abs/1312.6114).
 
-- Ankush Ganguly, Sanjana Jain, Ukrit Watchareeruetai. "Amortized Variational Inference: A Systematic Review." Journal of Artificial Intelligence Research, vol. 78, pp. 167-215, 2023. [URL](https://arxiv.org/abs/2209.10888).
+[16] Ankush Ganguly, Sanjana Jain, Ukrit Watchareeruetai. "Amortized Variational Inference: A Systematic Review." Journal of Artificial Intelligence Research, vol. 78, pp. 167-215, 2023. [URL](https://arxiv.org/abs/2209.10888).
 
-- Ryan Giordano, Martin Ingram, Tamara Broderick. "Black Box Variational Inference with a Deterministic Objective: Faster, More Accurate, and Even More Black Box." arXiv:2304.05527, 2023. [URL](https://arxiv.org/abs/2304.05527).
+[17] Ryan Giordano, Martin Ingram, Tamara Broderick. "Black Box Variational Inference with a Deterministic Objective: Faster, More Accurate, and Even More Black Box." arXiv:2304.05527, 2023. [URL](https://arxiv.org/abs/2304.05527).
 
-- Charles C Margossian, Laurence K Saul. "The Shrinkage-Delinkage Trade-off: An Analysis of Factorized Gaussian Approximations for Variational Inference." Uncertainty in Artificial Intelligence, 2023.
+[18] Charles C Margossian, Laurence K Saul. "The Shrinkage-Delinkage Trade-off: An Analysis of Factorized Gaussian Approximations for Variational Inference." Uncertainty in Artificial Intelligence, 2023.
 
-- Charles C. Margossian, David M. Blei. "Amortized Variational Inference: When and Why?" 2024. [URL](https://arxiv.org/pdf/2307.11018).
+[19] Charles C. Margossian, David M. Blei. "Amortized Variational Inference: When and Why?" 2024. [URL](https://arxiv.org/pdf/2307.11018).

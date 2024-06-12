@@ -45,6 +45,14 @@ const Container = styled.div`
   height: 100%;
   min-height: calc(100vh - var(--footer-height));
   background-color: var(--color-post-background);
+
+  @media (max-width: ${({ theme }) => theme.device.md}) {
+    padding: 0 var(--padding-md);
+  }
+
+  @media (max-width: ${({ theme }) => theme.device.sm}) {
+    padding: 0 var(--padding-sm);
+  }
 `
 
 const Footer = styled.footer`

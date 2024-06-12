@@ -73,7 +73,12 @@ This curated dataset, which includes repository ID, file paths, and code content
 
 ## The Model <a id="the-model" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
-![OpenCode Diagram](./images/open-code/opencode.png)
+<br>
+<figure style="text-align: center;">
+  <img src="./images/open-code/opencode.png" alt="Open Code  Interpreter Diagram">
+  <!-- <figcaption style="margin-top: 10px; color: gray;">Figure 1: The architecture of a Variational Autoencoder</figcaption> -->
+</figure>
+<br><br>
 
 Our fine-tuning efforts will be centered around the [m-a-p/OpenCodeInterpreter-DS-6.7B](https://huggingface.co/m-a-p/OpenCodeInterpreter-DS-6.7B) model. Check out their [website](https://opencodeinterpreter.github.io/) for a detailed exposition of the model and data. As of March 13, 2024, [m-a-p/OpenCodeInterpreter-DS-33B](https://huggingface.co/m-a-p/OpenCodeInterpreter-DS-33B) has claimed the #1 spot on [BigCode Leaderboard](https://huggingface.co/spaces/bigcode/bigcode-models-leaderboard).
 
