@@ -2,8 +2,8 @@
 title: "Closing the Amortization Gap in Bayesian Deep Generative Models"
 category: "Bayesian"
 date: "2024-06-07 12:00:00 +09:00"
-desc: "A tutorial using Bayesian Neural Networks to close the amortization gap in VAEs"
-thumbnail: "./images/amortized-bayes/vae.png"
+desc: "Implementing Bayesian Neural Networks in PyTorch to close the amortization gap in variational autoencoders"
+thumbnail: "./images/amortized-bayes/vae3.png"
 alt: "bayesian neural networks"
 ---
 
