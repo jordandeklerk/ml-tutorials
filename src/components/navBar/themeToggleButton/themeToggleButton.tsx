@@ -17,7 +17,7 @@ const ThemeToggleButton: React.FC<ThemeToggleButtonProperties> = ({
   themeToggler,
 }) => {
   const theme = useContext(ThemeContext)
-  const LABEL_TEXT = theme === DARK ? "Light theme" : "Dark theme"
+  const LABEL_TEXT = theme === DARK ? "" : ""
 
   return (
     <Button onClick={themeToggler}>
@@ -48,7 +48,7 @@ const Icon = styled.svg`
 const ButtonBackground = styled(Background)`
   border: none;
   background-color: var(--color-floating-button);
-  border-radius: var(--border-radius-lg);
+  border-radius: 50%; /* Ensure it's a circle */
   box-shadow: 0 3px 15px var(--color-floating-button-shadow);
 
   @media (max-width: ${({ theme }) => theme.device.sm}) {
@@ -88,13 +88,13 @@ const Button = styled.button`
   align-items: center;
   background-color: transparent;
   z-index: 100;
-  top: 4.5rem; /* Adjust this value to move the button down */
-  right: var(--sizing-md);
+  top: 0.5rem; /* Adjust this value to move the button down */
+  left: 300px;
   bottom: unset;
-  padding: var(--sizing-base);
-  padding-right: 20px;
+  padding: var(--sizing-sm); /* Decrease padding to reduce size */
+  padding-right: 2px; /* Adjust as needed */
   border: 1px solid var(--color-floating-button-border);
-  border-radius: var(--border-radius-lg);
+  border-radius: 50%; /* Ensure it's a circle */
   font-weight: var(--font-weight-medium);
 
   @media (min-width: ${({ theme }) => theme.device.sm}) {

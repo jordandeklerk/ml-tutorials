@@ -167,7 +167,9 @@ const Markdown = styled.article<{ rhythm: (typeof typography)["rhythm"] }>`
   }
 
   pre {
+    position: relative;
     border: 1px solid var(--color-gray-3);
+    overflow: auto; // Ensure the code block can scroll
   }
 
   pre.grvsc-container {
@@ -187,15 +189,11 @@ const Markdown = styled.article<{ rhythm: (typeof typography)["rhythm"] }>`
     border-radius: 3px;
   }
 
-  pre {
-    position: relative;
-  }
-
   .copy-button {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    padding: 4px 8px;
+    position: sticky;
+    left: 875px;
+    bottom: 100000px;
+    padding: 0px 0px;
     font-size: 12px;
     background-color: var(--color-code-button);
     color: var(--color-code-button-text);
@@ -211,4 +209,3 @@ const Markdown = styled.article<{ rhythm: (typeof typography)["rhythm"] }>`
 `
 
 export default Markdown
-
