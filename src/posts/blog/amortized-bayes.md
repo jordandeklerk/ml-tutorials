@@ -18,7 +18,7 @@ alt: "bayesian neural networks"
     <img src="https://img.shields.io/badge/PyTorch-2.1.1-red.svg" alt="PyTorch">
   </a>
 </div>
-<p style="color: gray; margin-top: 10px;">Estimated Reading Time: 45 minutes</p>
+<p style="color: gray; margin-top: 10px;">Estimated Reading Time: 90 minutes</p>
 
 <details>
   <summary>Table of Contents</summary>

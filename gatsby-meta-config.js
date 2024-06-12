@@ -20,13 +20,13 @@ const metaConfig = {
   title: "Machine Learning Tutorials",
   description: `A website to host various deep learning and machine learning tutorials`,
   author: "Jordan",
-  siteUrl: "https://gatsby-starter-apple.netlify.app",
+  siteUrl: "https://ml-tutorials.netlify.app",
   lang: "en",
   utterances: "jordandeklerk/machine-learning-tutorials",
   links: {
     github: "https://github.com/jordandeklerk",
   },
-  favicon: "src/images/icon.png",
+  favicon: "src/images/uiuc.png",
 }
 
 // eslint-disable-next-line no-undef
