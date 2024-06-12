@@ -114,11 +114,11 @@ const Content = styled.div`
 const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
-  // gap: 1rem;
+  // gap: 1rem
 `
 
 const Title = styled.h1`
-  // z-index: 9999;
+  z-index: 9999;
   padding: 0;
   border: none;
   font-size: var(--text-title);
@@ -231,12 +231,15 @@ const LinkContent = styled.div`
 
 const LinkWrap = styled.div`
   display: flex;
+  justify-content: flex-end; /* Aligns the buttons to the right */
+  margin-right: -70px; /* Adjust this value to move the buttons further right */
   @media (max-width: ${({ theme }) => theme.device.sm}) {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: var(--nav-height);
+    margin-right: 0; /* Reset margin for small screens */
   }
 `
 
