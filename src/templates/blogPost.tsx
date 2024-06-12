@@ -43,10 +43,15 @@ const BlogPost: React.FC<PageProps<Queries.Query>> = ({ data }) => {
   useEffect(() => {
     const codeBlocks = document.querySelectorAll("pre")
     codeBlocks.forEach(pre => {
+      const wrapper = document.createElement("div")
+      wrapper.classList.add("code-block-wrapper")
+      pre.parentNode?.insertBefore(wrapper, pre)
+      wrapper.appendChild(pre)
+
       const button = document.createElement("button")
       button.innerText = "Copy"
       button.classList.add("copy-button")
-      pre.appendChild(button)
+      wrapper.appendChild(button)
     })
   }, [])
 
@@ -97,12 +102,17 @@ const OuterWrapper = styled.div`
 `
 
 const InnerWrapper = styled.div`
-  width: 55%; // Adjusted width
+  width: 100%;
+  max-width: 52%;
   margin: 0 auto;
   padding-bottom: var(--sizing-lg);
 
+  @media (max-width: ${({ theme }) => theme.device.md}) {
+    max-width: 75%;
+  }
+
   @media (max-width: ${({ theme }) => theme.device.sm}) {
-    width: 87.5%; // Adjusted width for smaller screens
+    max-width: 87.5%;
   }
 `
 
