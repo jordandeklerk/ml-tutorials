@@ -86,7 +86,7 @@ Various predictive models utilizing deep learning technology have been proposed 
 
 ### Pre-training Techniques <a id="pre-training-techniques" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
-Transitioning from the challenges in effectively utilizing Electronic Health Records (EHR) data for predictive modeling, we now turn to promising solutions that have emerged in recent years. One such approach is the application of pre-training techniques, which have proven highly successful in various domains such as image classification and machine translation. These techniques offer a robust foundation for models, enhancing their ability to generalize from the training data and thereby improving their performance. In the following section, we will delve into the specifics of pre-training techniques, particularly focusing on the adaptation of the BERT framework for EHR data, which has shown significant potential in addressing the challenges previously mentioned.
+One approach to overcome some of these challenges is the application of pre-training techniques, which have proven highly successful in various domains such as image classification and machine translation. These techniques offer a robust foundation for models, enhancing their ability to generalize from the training data and thereby improving their performance. In the following section, we will delve into the specifics of pre-training techniques, particularly focusing on the adaptation of the BERT framework for EHR data, which has shown significant potential in addressing the challenges previously mentioned.
 
 The unsupervised nature of pre-training can be thought of as a form of regularization that helps models generalize better from the training data. In recent years, there have been significant advancements in language model pre-training techniques. These techniques have led to substantial improvements in performance across a range of natural language processing (NLP) tasks. Among these pre-training techniques, BERT (Devlin et al., 2018) has emerged as the most widely used. BERT is built on the Transformer architecture (Vaswani et al., 2017) and employs a masked language model to achieve bi-directional representation.
 
@@ -108,7 +108,7 @@ Given the diagnosis codes $\mathcal{C}_d^t$ and procedure codes $\mathcal{C}_p^t
 
 ### BERT Background <a id="bert-background" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
-BERT, built on a multi-layer Transformer encoder as described by Vaswani et al. (2017), leverages two key unsupervised pre-training tasks:
+BERT, built on a multi-layer Transformer encoder as described by [Vaswani et al. (2017)](https://arxiv.org/pdf/1706.03762), leverages two key unsupervised pre-training tasks:
 
 1. **Masked Language Model**: Unlike traditional models that predict the next word based on previous words, BERT randomly masks certain words in a sentence and predicts their original vocabulary IDs using context from both directions.
 2. **Next Sentence Prediction**: Since many of BERT's applications involve understanding the relationship between two sentences, it is pre-trained with a binary task to determine if one sentence follows another.
@@ -135,15 +135,17 @@ In this example:
 
 **Adapting BERT to EHR Data**
 
-Masked token learning, inspired by BERT, can be adapted for Electronic Health Records (EHR) to predict diagnoses and procedures by leveraging the contextual relationships within medical data. To implement this, patient records are converted into sequences where each token represents a medical event, such as a diagnosis or procedure. During training, some tokens are randomly selected and replaced with a special `[MASK]` token. The model is trained to predict the original medical events corresponding to these `[MASK]` tokens by utilizing the context provided by the surrounding tokens.
+Masked token learning, inspired by BERT, can be adapted for electronic health records to predict diagnoses and procedures by leveraging the contextual relationships within medical data. To implement this, patient records are converted into sequences where each token represents a medical event, such as a diagnosis or procedure. During training, some tokens are randomly selected and replaced with a special `[MASK]` token. The model is trained to predict the original medical events corresponding to these `[MASK]` tokens by utilizing the context provided by the surrounding tokens.
 
-For example, if a patient's EHR sequence is `I10, I25, E11, Z01`, representing the diagnosis codes for <span style="color: #1E90FF;">hypertension</span>, <span style="color: #1E90FF;">heart disease</span>, <span style="color: #1E90FF;">diabetes</span>, and <span style="color: #1E90FF;">encounter for examination</span>, the sequence might be modified to `I10, [MASK], E11, Z01` during training. The model would then learn to predict that the masked token should be "I25" (<span style="color: #1E90FF;">heart disease</span>), based on the context of the other codes. This method allows the model to understand the relationships and dependencies between different medical events, enhancing its ability to predict missing or future diagnoses and procedures.
+For example, if a patient's EHR sequence is `I10, I25, E11, Z01`, representing the diagnosis codes for <span style="color: #FF4500;">hypertension</span>, <span style="color: #FF4500;">heart disease</span>, <span style="color: #FF4500;">diabetes</span>, and <span style="color: #FF4500;">encounter for examination</span>, the sequence might be modified to `I10, [MASK], E11, Z01` during training. The model would then learn to predict that the masked token should be "I25" (<span style="color: #FF4500;">heart disease</span>), based on the context of the other codes. This method allows the model to understand the relationships and dependencies between different medical events, enhancing its ability to predict missing or future diagnoses and procedures.
 
 ## CMS Synthetic Data <a id="cms-synthetic-data" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
 Medicare Claims Synthetic Public Use Files (SynPUFs) provide a way to work with realistic Medicare claims data while protecting beneficiary privacy. The SynPUFs are similar in structure to CMS Limited Data Sets but with fewer variables, allowing users to develop programs and products that will work on actual CMS data files. These synthetic files include a robust set of metadata not available in the public domain.
 
-Though limited in inferential research value, SynPUFs offer a timely and cost-effective way to access realistic data, fostering innovation and better care for Medicare beneficiaries. In this project, we use the 2008-2010 Data Entrepreneurs’ SynPUF, available to download for free. I also provide a script to pull this data from the CMS website and preprocess it on my [GitHub](https://github.com/jordandeklerk/EHR-BERT/tree/main) for this project. Simply run
+Though limited in inferential research value, SynPUFs offer a timely and cost-effective way to access realistic data, fostering innovation and better care for Medicare beneficiaries. In this project, we use the 2008-2010 Data Entrepreneurs’ SynPUF, available to download for free.
+
+I also provide a script to pull this data from the CMS website and preprocess it on my [GitHub](https://github.com/jordandeklerk/EHR-BERT/tree/main) for this project. Simply run
 
 ```bash
 bash download_data.sh
@@ -220,10 +222,11 @@ We will start with some installations.
 %%capture
 !pip install -q wandb einops
 ```
+
 </details>
 <br>
 
-Assuming you have downloaded the CMS data already using the ```download_data.sh``` script in the [repo](https://github.com/jordandeklerk/EHR-BERT/tree/main) for this project (which is highly recommended), we now need to combine and process the csv files into a single sample. We can do this with the code below. Keep in mind, I highly suggest you go to the repo and grab the script to fetch the data and combine the claims.
+Assuming you have downloaded the CMS data already using the `download_data.sh` script in the [repo](https://github.com/jordandeklerk/EHR-BERT/tree/main) for this project (which is highly recommended), we now need to combine and process the csv files into a single sample. We can do this with the code below. (Keep in mind, I highly suggest you go to the repo and grab the script to fetch the data and combine the claims).
 
 <details>
     <summary style="color: #1E90FF;">Fetching Data Code</summary>
@@ -239,13 +242,13 @@ import time
 
 def reduce_mem_usage(df):
     """ Iterate through all the columns of a dataframe and modify the data type
-        to reduce memory usage.        
+        to reduce memory usage.
     """
     start_mem = df.memory_usage().sum() / 1024**2
-    
+
     for col in df.columns:
         col_type = df[col].dtype
-        
+
         if col_type != object:
             c_min = df[col].min()
             c_max = df[col].max()
@@ -257,7 +260,7 @@ def reduce_mem_usage(df):
                 elif c_min > np.iinfo(np.int32).min and c_max < np.iinfo(np.int32).max:
                     df[col] = df[col].astype(np.int32)
                 elif c_min > np.iinfo(np.int64).min and c_max < np.iinfo(np.int64).max:
-                    df[col] = df[col].astype(np.int64)  
+                    df[col] = df[col].astype(np.int64)
             else:
                 if c_min > np.finfo(np.float16).min and c_max < np.finfo(np.float16).max:
                     df[col] = df[col].astype(np.float16)
@@ -269,7 +272,7 @@ def reduce_mem_usage(df):
             df[col] = df[col].astype('category')
 
     end_mem = df.memory_usage().sum() / 1024**2
-    
+
     return df
 
 def read_csv_in_chunks(file_path, chunksize=10000):
@@ -302,6 +305,7 @@ def concatenate_claims(directories):
 
     return combined_ip_claims
 ```
+
 </details>
 <br>
 
@@ -458,7 +462,7 @@ class ClaimsProcessor:
         print('-'*50)
 
 if __name__ == "__main__":
-    processor = ClaimsProcessor('combined_ip_claims.pkl') 
+    processor = ClaimsProcessor('combined_ip_claims.pkl')
     processor.preprocess()
     processor.report()
     result, icd9_codes, proc_codes = processor.get_codes()
@@ -467,6 +471,7 @@ if __name__ == "__main__":
 
 result.to_pickle('./pretrain/data-comb-visit.pkl')
 ```
+
 </details>
 <br>
 
@@ -1725,7 +1730,7 @@ The stability of the training and validation loss curves is clearly depicted bel
 </figure>
 <br>
 
- ## Conclusion <a id="conclusion" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
+## Conclusion <a id="conclusion" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
 In this project, we explored the application of a BERT-style transformer model to predict diagnoses and procedures from Electronic Health Records (EHR). Our approach involved adapting the BERT architecture to handle the unique challenges posed by the structured yet complex nature of EHR data. By leveraging pre-training techniques and a masked language model, we aimed to enhance the model's ability to generalize and interpret the intricate patterns within medical data.
 
