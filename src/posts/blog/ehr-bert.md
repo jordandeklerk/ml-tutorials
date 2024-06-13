@@ -213,12 +213,20 @@ The process involves loading claims data, converting procedure codes to string f
 
 We will start with some installations.
 
+<details>
+    <summary style="color: #1E90FF;">Imports Code</summary>
+
 ```python
 %%capture
 !pip install -q wandb einops
 ```
+</details>
+<br>
 
 Assuming you have downloaded the CMS data already using the ```download_data.sh``` script in the [repo](https://github.com/jordandeklerk/EHR-BERT/tree/main) for this project (which is highly recommended), we now need to combine and process the csv files into a single sample. We can do this with the code below. Keep in mind, I highly suggest you go to the repo and grab the script to fetch the data and combine the claims.
+
+<details>
+    <summary style="color: #1E90FF;">Fetching Data Code</summary>
 
 ```python
 import numpy as np
@@ -294,8 +302,13 @@ def concatenate_claims(directories):
 
     return combined_ip_claims
 ```
+</details>
+<br>
 
 Now we can process the combined inpatient claims file to extract the relevant diagnosis and procedure codes, and format the data into a suitable structure for our model.
+
+<details>
+    <summary style="color: #1E90FF;">Claims Preprocessing Code</summary>
 
 ```python
 import pandas as pd
@@ -454,10 +467,10 @@ if __name__ == "__main__":
 
 result.to_pickle('./pretrain/data-comb-visit.pkl')
 ```
+</details>
+<br>
 
-The output from the preprocessing is given below.
-
-```
+<!-- ```
 Output:
 
 Loading claims data...
@@ -504,7 +517,7 @@ Saved unique codes in 0.83 seconds.
 2                  0
 3                  0
 4                  0
-```
+``` -->
 
 Our final dataframe for the model is structured at the claim level, focusing solely on the primary diagnosis and procedure code for each claim. Although incorporating multiple diagnosis and procedure codes per claim is feasible, it would significantly increase the complexity of our masked token learning prediction task. Additionally, it's uncertain whether these additional codes provide valuable insights beyond what the primary codes offer.
 

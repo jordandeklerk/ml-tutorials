@@ -103,12 +103,20 @@ For context, I fine-tuned the [bigcode/starcoder2-3b](https://huggingface.co/big
 
 To get started, let's install all the necessary libraries. As you can see, in addition to `transformers` and `datasets`, we'll be using `peft`, `bitsandbytes`, and `flash-attn` to optimize the training. We will use `wandb` to track training and evaluation metrics such as loss and learning rate.
 
+<details>
+    <summary style="color: #1E90FF;">Install Code</summary>
+
 ```python
 %%capture
 !pip install git+https://github.com/huggingface/transformers.git "huggingface_hub[cli]" --upgrade --quiet
 !pip install -q datasets peft bitsandbytes flash-attn gradio trl wandb
 !huggingface-cli login --token "YOUR HF TOKEN"
 ```
+</details>
+<br>
+
+<details>
+    <summary style="color: #1E90FF;">Imports Code</summary>
 
 ```python
 from dataclasses import dataclass, field
@@ -146,6 +154,8 @@ set_seed(315)
 import warnings
 warnings.filterwarnings("ignore")
 ```
+</details>
+<br>
 
 In our project, we will use an already existing dataset called [b-mc2/sql-create-context](https://huggingface.co/datasets/b-mc2/sql-create-context), which is a popular natural language text-to-SQL dataset for fine-tuning instruction models to generate SQL queries from English text inputs.
 
@@ -373,7 +383,10 @@ LoRA+ introduces one new required hyperparameter to your optimizer (and another 
 `loraplus_lr_embedding`: (optional) if LoRA modules are added to embedding layers, you can specify a different learning rate for them. Default value 1e-6.
 Note that `loraplus_lr_ratio` should be greater than 1, and when it is equal to 1 this is just the regular LoRA configuration. The optimal choice of `loraplus_lr_ratio` is model and task dependent and needs to be set in tandem with the optimizer learning rate.
 
-Here is the wrapper for the LoRA+ code:
+Here is the wrapper for the LoRA+ code.
+
+<details>
+    <summary style="color: #1E90FF;">LoRA+ Code</summary>
 
 ```python
 # Modified from https://github.com/nikhil-ghosh-berkeley/loraplus/blob/main/lora_plus.py
@@ -642,6 +655,8 @@ class LoraPlusSFTTrainer(SFTTrainer):
             eval_packing=eval_packing,
         )
 ```
+</details>
+<br>
 
 Now let's setup the PEFT configuration.
 
@@ -868,7 +883,10 @@ Now that we have our `generate_sql` function, we can iterate through the evaluat
 
 Keep in mind that evaluating generative models is not trivial. In our method, we will initially look at the accuracy of the generated SQL based on the ground truth SQL query as our metric. An alternative way could be to automatically execute the generated SQL query and compare the results with the ground truth. This would be a more accurate metric but requires more work to setup.
 
-Let's look at a simple query to see how the model performs
+Let's look at a simple query to see how the model performs.
+
+<details>
+    <summary style="color: #1E90FF;">Simple Query Code</summary>
 
 ```python
 total_samples = 0
@@ -914,6 +932,8 @@ print("\n" + "-" * 50 + "\n")
 accuracy = correct_predictions / total_samples
 print(f"Accuracy: {accuracy:.2f}")
 ```
+</details>
+<br>
 
 ```
 Output:
@@ -946,6 +966,9 @@ Accuracy: 1.00
 ```
 
 We can see that our fine-tuned model generates the exact query as the ground truth. But this example was pretty easy. Now let's look at a more complicated query to see how the model does.
+
+<details>
+    <summary style="color: #1E90FF;">Hard Query Code</summary>
 
 ```python
 total_samples = 0
@@ -1004,6 +1027,8 @@ if sample_index is not None:
 else:
     print("No query found with a ground truth SQL of more than 50 tokens.")
 ```
+</details>
+<br>
 
 ```
 Output:
