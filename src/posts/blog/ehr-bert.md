@@ -214,7 +214,7 @@ The process involves loading claims data, converting procedure codes to string f
 We will start with some installations.
 
 <details>
-    <summary style="color: #1E90FF;">Imports Code</summary>
+    <summary style="color: #1E90FF;">Install Code</summary>
 
 ```python
 %%capture
