@@ -20,42 +20,55 @@ alt: "bayesian neural networks"
 </div>
 <p style="color: gray; margin-top: 10px;">Estimated Reading Time: 60 minutes</p>
 
-<details>
-  <summary>Table of Contents</summary>
-  <nav style="margin-top: 10px;">
-    <ul style="list-style-type: none; padding-left: 0;">
-      <li><a href="#overview">Overview</a></li>
-      <li><a href="#introduction">Introduction</a></li>
-      <li><a href="#background">Background</a>
-        <ul style="list-style-type: none; padding-left: 10px;">
-          <li><a href="#inference-in-variational-autoencoders">Inference in Variational Autoencoders</a></li>
-          <li><a href="#the-reparameterization-trick">The Reparameterization Trick</a>
-            <ul style="list-style-type: none; padding-left: 10px;">
-              <li><a href="#non-differentiable-expectations">Non-Differentiable Expectations</a></li>
-              <li><a href="#implementation">Implementation</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><a href="#theoretical-preliminaries">Theoretical Preliminaries</a></li>
-      <li><a href="#numerical-experiments">Numerical Experiments</a>
-        <ul style="list-style-type: none; padding-left: 10px;">
-          <li><a href="#experimental-setup">Experimental Setup</a>
-            <ul style="list-style-type: none; padding-left: 10px;">
-              <li><a href="#model-setup">Model Setup</a></li>
-              <li><a href="#main-model">Main Model</a></li>
-              <li><a href="#training-the-model">Training the Model</a></li>
-              <li><a href="#running-the-experiments">Running the Experiments</a></li>
-            </ul>
-          </li>
-          <li><a href="#results">Results</a></li>
-        </ul>
-      </li>
-      <li><a href="#conclusion">Conclusion</a></li>
-      <li><a href="#references">References</a></li>
-    </ul>
-  </nav>
-</details>
+</div>
+</header> 
+<style>
+  .toc {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--toc-background);
+  }
+</style>
+<div class="toc">
+  <details>
+    <summary accesskey="c" title="(Alt + C)">
+      <span class="details">Table of Contents</span>
+    </summary>
+    <div class="inner">
+      <ul>
+        <li><a href="#overview" aria-label="Overview">Overview</a></li>
+        <li><a href="#introduction" aria-label="Introduction">Introduction</a></li>
+        <li><a href="#background" aria-label="Background">Background</a>
+          <ul>
+            <li><a href="#inference-in-variational-autoencoders" aria-label="Inference in Variational Autoencoders">Inference in Variational Autoencoders</a></li>
+            <li><a href="#the-reparameterization-trick" aria-label="The Reparameterization Trick">The Reparameterization Trick</a>
+              <ul>
+                <li><a href="#non-differentiable-expectations" aria-label="Non-Differentiable Expectations">Non-Differentiable Expectations</a></li>
+                <li><a href="#implementation" aria-label="Implementation">Implementation</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#theoretical-preliminaries" aria-label="Theoretical Preliminaries">Theoretical Preliminaries</a></li>
+        <li><a href="#numerical-experiments" aria-label="Numerical Experiments">Numerical Experiments</a>
+          <ul>
+            <li><a href="#experimental-setup" aria-label="Experimental Setup">Experimental Setup</a>
+              <ul>
+                <li><a href="#model-setup" aria-label="Model Setup">Model Setup</a></li>
+                <li><a href="#main-model" aria-label="Main Model">Main Model</a></li>
+                <li><a href="#training-the-model" aria-label="Training the Model">Training the Model</a></li>
+                <li><a href="#running-the-experiments" aria-label="Running the Experiments">Running the Experiments</a></li>
+              </ul>
+            </li>
+            <li><a href="#results" aria-label="Results">Results</a></li>
+          </ul>
+        </li>
+        <li><a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+        <li><a href="#references" aria-label="References">References</a></li>
+      </ul>
+    </div>
+  </details>
+</div>
 
 ## Overview <a id="overview" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 

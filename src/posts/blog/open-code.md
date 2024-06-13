@@ -23,37 +23,50 @@ alt: "coding llms"
 </div>
 <p style="color: gray; margin-top: 10px;">Estimated Reading Time: 45 minutes</p>
 
-<details>
-  <summary>Table of Contents</summary>
-  <nav style="margin-top: 10px;">
-    <ul style="list-style-type: none; padding-left: 0;">
-      <li><a href="#introduction">Introduction</a></li>
-      <li><a href="#data-preparation">Data Preparation</a></li>
-      <li><a href="#the-model">The Model</a>
-        <ul style="list-style-type: none; padding-left: 10px;">
-          <li><a href="#prepare-model">Prepare Model</a>
-            <ul style="list-style-type: none; padding-left: 10px;">
-              <li><a href="#bits-and-bytes-config">Bits and Bytes Config</a></li>
-            </ul>
-          </li>
-          <li><a href="#new-lora-config">New LoRA+ Config</a>
-            <ul style="list-style-type: none; padding-left: 10px;">
-              <li><a href="#applying-lora-in-practice">Applying LoRA+ in Practice</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><a href="#train-the-model">Train the Model</a>
-        <ul style="list-style-type: none; padding-left: 10px;">
-          <li><a href="#noisy-embeddings">Noisy Embeddings</a></li>
-        </ul>
-      </li>
-      <li><a href="#inference">Inference</a></li>
-      <li><a href="#app-demo">App Demo</a></li>
-      <li><a href="#conclusion">Conclusion</a></li>
-    </ul>
-  </nav>
-</details>
+</div>
+</header> 
+<style>
+  .toc {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--toc-background);
+  }
+</style>
+<div class="toc">
+  <details>
+    <summary accesskey="c" title="(Alt + C)">
+      <span class="details">Table of Contents</span>
+    </summary>
+    <div class="inner">
+      <ul>
+        <li><a href="#introduction" aria-label="Introduction">Introduction</a></li>
+        <li><a href="#data-preparation" aria-label="Data Preparation">Data Preparation</a></li>
+        <li><a href="#the-model" aria-label="The Model">The Model</a>
+          <ul>
+            <li><a href="#prepare-model" aria-label="Prepare Model">Prepare Model</a>
+              <ul>
+                <li><a href="#bits-and-bytes-config" aria-label="Bits and Bytes Config">Bits and Bytes Config</a></li>
+              </ul>
+            </li>
+            <li><a href="#new-lora-config" aria-label="New LoRA+ Config">New LoRA+ Config</a>
+              <ul>
+                <li><a href="#applying-lora-in-practice" aria-label="Applying LoRA+ in Practice">Applying LoRA+ in Practice</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#train-the-model" aria-label="Train the Model">Train the Model</a>
+          <ul>
+            <li><a href="#noisy-embeddings" aria-label="Noisy Embeddings">Noisy Embeddings</a></li>
+          </ul>
+        </li>
+        <li><a href="#inference" aria-label="Inference">Inference</a></li>
+        <li><a href="#app-demo" aria-label="App Demo">App Demo</a></li>
+        <li><a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+      </ul>
+    </div>
+  </details>
+</div>
 
 ## Introduction <a id="introduction" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
@@ -353,7 +366,7 @@ You can find the original LoRA+ code [here](https://github.com/nikhil-ghosh-berk
 
 LoRA+ introduces one new required hyperparameter to your optimizer (and another optional hyperparameter). Setting this hyperparameter appropriately can improve finetuning performance, especially on more challenging downstream tasks.
 
-**LoRA+ arguments:**
+#### LoRA+ arguments
 
 `loraplus_lr_ratio`: the ratio of learning rates $\eta_A / \eta_B$ where $\eta_A$ is passed in as the optimizer learning rate (e.g., learning_rate or lr). As a rule of thumb, `loraplus_lr_ratio` should be larger when the task is more difficult and the model needs to update its features to learn well. In this case, it helps to make the learning rate slightly smaller (e.g., by a factor of 2) than typical vanilla LoRA learning rates.
 
