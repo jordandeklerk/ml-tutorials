@@ -1,5 +1,5 @@
 ---
-title: "Fine-Tuning Coding LLM for SQL Code Generation"
+title: "Fine-Tuning a Coding LLM for SQL Code Generation"
 category: "LLM"
 date: "2024-05-06 12:00:00 +09:00"
 desc: "Fine-tuning a coding LLM using HuggingFace 🤗 for text-to-SQL tasks with the QLoRA+ method"
