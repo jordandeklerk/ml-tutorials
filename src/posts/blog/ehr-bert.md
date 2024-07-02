@@ -18,9 +18,9 @@ alt: "BERT for EHR"
     <img src="https://img.shields.io/badge/PyTorch-2.1.1-red.svg" alt="PyTorch">
   </a>
 </div>
-<p style="color: gray; margin-top: 10px;">Estimated Reading Time: 90 minutes</p>
+<p style="color: var(--text-color); margin-top: 10px;">Estimated Reading Time: 90 min | Author: Jordan Deklerk</p>
 
-</div>
+<!-- </div>
 </header> 
 <style>
   .toc {
@@ -29,7 +29,7 @@ alt: "BERT for EHR"
     background-color: var(--toc-background);
   }
 </style>
-<div class="toc">
+<div class="toc"> -->
   <details>
     <summary accesskey="c" title="(Alt + C)">
       <span class="details">Table of Contents</span>
@@ -67,7 +67,7 @@ alt: "BERT for EHR"
       </ul>
     </div>
   </details>
-</div>
+<!-- </div> -->
 
 ## Introduction <a id="introduction" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
@@ -216,7 +216,7 @@ The process involves loading claims data, converting procedure codes to string f
 We will start with some installations.
 
 <details>
-    <summary style="color: #1E90FF;">Install Code</summary>
+    <summary>Install Code</summary>
 
 ```python
 %%capture
@@ -229,7 +229,7 @@ We will start with some installations.
 Assuming you have downloaded the CMS data already using the `download_data.sh` script in the [repo](https://github.com/jordandeklerk/EHR-BERT/tree/main) for this project (which is highly recommended), we now need to combine and process the csv files into a single sample. We can do this with the code below. (Keep in mind, I highly suggest you go to the repo and grab the script to fetch the data and combine the claims).
 
 <details>
-    <summary style="color: #1E90FF;">Fetching Data Code</summary>
+    <summary>Fetching Data Code</summary>
 
 ```python
 import numpy as np
@@ -312,7 +312,7 @@ def concatenate_claims(directories):
 Now we can process the combined inpatient claims file to extract the relevant diagnosis and procedure codes, and format the data into a suitable structure for our model.
 
 <details>
-    <summary style="color: #1E90FF;">Claims Preprocessing Code</summary>
+    <summary>Claims Preprocessing Code</summary>
 
 ```python
 import pandas as pd

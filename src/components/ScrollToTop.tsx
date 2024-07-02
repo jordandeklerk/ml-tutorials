@@ -27,19 +27,17 @@ const ScrollToTop: React.FC = () => {
 
   return (
     <>
-      {isVisible && (
-        <Button onClick={scrollToTop} aria-label="Scroll to top">
-          ↑
-        </Button>
-      )}
+      <Button onClick={scrollToTop} aria-label="Scroll to top" isVisible={isVisible}>
+        ☝️
+      </Button>
     </>
   )
 }
 
-const Button = styled.button`
+const Button = styled.button<{ isVisible: boolean }>`
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 40px; /* Adjusted from 20px to 40px */
+  right: 40px;
   background-color: grey; /* Changed to light grey */
   color: var(--color-white);
   border: none;
@@ -49,6 +47,8 @@ const Button = styled.button`
   font-size: 24px;
   cursor: pointer;
   z-index: 100;
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  transition: opacity 0.5s ease-in-out;
 `
 
 export default ScrollToTop

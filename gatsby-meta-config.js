@@ -18,7 +18,7 @@
 /** @type {MetaConfig} */
 const metaConfig = {
   title: "Tutorials",
-  description: `A website to host various deep learning and machine learning tutorials`,
+  description: `This website hosts various deep learning and machine learning tutorials, and serves as a place to organize my thoughts on various topics in ML`,
   author: "Jordan",
   siteUrl: "https://ml-tutorials.netlify.app",
   lang: "en",

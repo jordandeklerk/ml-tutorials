@@ -21,9 +21,9 @@ alt: "coding llms"
     <img src="https://img.shields.io/badge/Gradio-Interface-ff69b4.svg" alt="Gradio">
   </a>
 </div>
-<p style="color: gray; margin-top: 10px;">Estimated Reading Time: 45 minutes</p>
+<p style="color: var(--text-color); margin-top: 10px;">Estimated Reading Time: 45 min | Author: Jordan Deklerk</p>
 
-</div>
+<!-- </div>
 </header> 
 <style>
   .toc {
@@ -32,7 +32,7 @@ alt: "coding llms"
     background-color: var(--toc-background);
   }
 </style>
-<div class="toc">
+<div class="toc"> -->
   <details>
     <summary accesskey="c" title="(Alt + C)">
       <span class="details">Table of Contents</span>
@@ -66,7 +66,7 @@ alt: "coding llms"
       </ul>
     </div>
   </details>
-</div>
+<!-- </div> -->
 
 ## Introduction <a id="introduction" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
@@ -104,7 +104,7 @@ For context, I fine-tuned the [bigcode/starcoder2-3b](https://huggingface.co/big
 To get started, let's install all the necessary libraries. As you can see, in addition to `transformers` and `datasets`, we'll be using `peft`, `bitsandbytes`, and `flash-attn` to optimize the training. We will use `wandb` to track training and evaluation metrics such as loss and learning rate.
 
 <details>
-    <summary style="color: #1E90FF;">Install Code</summary>
+    <summary>Install Code</summary>
 
 ```python
 %%capture
@@ -116,7 +116,7 @@ To get started, let's install all the necessary libraries. As you can see, in ad
 <br>
 
 <details>
-    <summary style="color: #1E90FF;">Imports Code</summary>
+    <summary>Imports Code</summary>
 
 ```python
 from dataclasses import dataclass, field
@@ -386,7 +386,7 @@ Note that `loraplus_lr_ratio` should be greater than 1, and when it is equal to 
 Here is the wrapper for the LoRA+ code.
 
 <details>
-    <summary style="color: #1E90FF;">LoRA+ Code</summary>
+    <summary>LoRA+ Code</summary>
 
 ```python
 # Modified from https://github.com/nikhil-ghosh-berkeley/loraplus/blob/main/lora_plus.py
@@ -886,7 +886,7 @@ Keep in mind that evaluating generative models is not trivial. In our method, we
 Let's look at a simple query to see how the model performs.
 
 <details>
-    <summary style="color: #1E90FF;">Simple Query Code</summary>
+    <summary>Simple Query Code</summary>
 
 ```python
 total_samples = 0
@@ -968,7 +968,7 @@ Accuracy: 1.00
 We can see that our fine-tuned model generates the exact query as the ground truth. But this example was pretty easy. Now let's look at a more complicated query to see how the model does.
 
 <details>
-    <summary style="color: #1E90FF;">Hard Query Code</summary>
+    <summary>Hard Query Code</summary>
 
 ```python
 total_samples = 0

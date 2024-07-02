@@ -18,9 +18,9 @@ alt: "bayesian neural networks"
     <img src="https://img.shields.io/badge/PyTorch-2.1.1-red.svg" alt="PyTorch">
   </a>
 </div>
-<p style="color: gray; margin-top: 10px;">Estimated Reading Time: 60 minutes</p>
+<p style="color: var(--text-color); margin-top: 10px;">Estimated Reading Time: 60 min | Author: Jordan Deklerk</p>
 
-</div>
+<!-- </div>
 </header> 
 <style>
   .toc {
@@ -29,7 +29,7 @@ alt: "bayesian neural networks"
     background-color: var(--toc-background);
   }
 </style>
-<div class="toc">
+<div class="toc"> -->
   <details>
     <summary accesskey="c" title="(Alt + C)">
       <span class="details">Table of Contents</span>
@@ -68,7 +68,7 @@ alt: "bayesian neural networks"
       </ul>
     </div>
   </details>
-</div>
+<!-- </div> -->
 
 ## Overview <a id="overview" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
@@ -308,7 +308,7 @@ where $\Omega$ is a linear neural network consisting of two hidden layers with v
 Let's first import all of the necessary libraries we will be using in this tutorial. We will be working mainly with `torch` and `torchvision`.
 
 <details>
-    <summary style="color: #1E90FF;">Imports Code</summary>
+    <summary>Imports Code</summary>
 
 ```python
 import numpy as np
@@ -526,7 +526,7 @@ def Decoder(theta, z, latent_dim, hidden_dim, x_dim):
 We will need to define some utility functions to use when calculating the ELBO.
 
 <details>
-    <summary style="color: #1E90FF;">Utils Code</summary>
+    <summary>Utils Code</summary>
 
 ```python
 # Utility functions

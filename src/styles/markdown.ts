@@ -210,6 +210,99 @@ const Markdown = styled.article<{ rhythm: (typeof typography)["rhythm"] }>`
   .copy-button.copied {
     background-color: var(--color-code-button-copied);
   }
+
+  // Styles for details (proofs)
+  details {
+    background-color: var(--color-code-block);
+    border: 1px solid var(--color-gray-3);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0.5rem;
+  }
+
+  details[open] summary {
+    margin-bottom: 1rem;
+  }
+
+  // Updated styles for theorems
+  .theorem {
+    background-color: var(--color-code-block);
+    border: 1px solid var(--color-gray-3);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .theorem .theorem-title,
+  .theorem p.theorem-title {
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0.5rem;
+    color: #c85417 !important;  // New color for theorem title with !important
+  }
+
+  .theorem-content {
+    margin-top: 0.5rem;
+    color: #3a8ab0;
+  }
+
+  // Override styles for paragraphs, math elements, and list items within theorems
+  .theorem p,
+  .theorem .katex,
+  .theorem .katex-html,
+  .theorem ul,
+  .theorem ol,
+  .theorem li {
+    color: #3a8ab0;
+    margin-bottom: 0;
+  }
+
+  // Ensure inline math is colored correctly
+  .theorem .katex-html * {
+    color: #3a8ab0 !important;
+  }
+
+  // For MathJax (if you're using it instead of KaTeX)
+  .theorem .MathJax {
+    color: #3a8ab0 !important;
+  }
+
+  // Style list items within theorems
+  .theorem ul,
+  .theorem ol {
+    margin-top: ${({ rhythm }) => rhythm(0.5)};
+    margin-bottom: ${({ rhythm }) => rhythm(0.5)};
+    padding-left: ${({ rhythm }) => rhythm(0)};
+  }
+
+  .theorem li {
+    color: #3a8ab0;
+    margin-bottom: ${({ rhythm }) => rhythm(0.3)};
+  }
+
+  .theorem li::marker {
+    color: #3a8ab0;
+  }
+
+  // Ensure code blocks within details are not styled as code blocks within the details box
+  details pre,
+  details code {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  // Explicitly set the font size for code blocks within details to match regular code blocks
+  details pre,
+  details code {
+    font-size: 0.9em; // Match the font size of regular code blocks
+  }
 `
 
 export default Markdown
