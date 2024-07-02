@@ -493,9 +493,11 @@ Our setup assumes that $r_t \in\left[0, R_{\max }\right]$. This is without loss 
 
 ## Planning in MDPs <a id="planning-in-mdps" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
-Now we are ready to discuss how to solve RL problems. _Planning_ refers to the problem of computing the optimal policy $\pi^*_{\mathcal{M}}$ given the MDP specification $\mathcal{M} = (\mathcal{S}, \mathcal{A}, P, R, \gamma)$. We will focus on several classical planning algorithms that compute $Q^*_{\mathcal{M}}$ such as policy and value iteration. 
+Now we are ready to discuss how to solve RL problems. _Planning_ refers to the problem of computing the optimal policy $\pi^*_{\mathcal{M}}$ given the MDP specification $\mathcal{M} = (\mathcal{S}, \mathcal{A}, P, R, \gamma)$ using dynamic programming. We will focus on several classical planning algorithms that compute $Q^*_{\mathcal{M}}$ such as policy and value iteration. 
 
-These methods assume we know the model environment in which case they can be solved using dynamic programming. Note that in practice, this is rarely the case. However, to provide a complete picture of the theoretical foundations of RL, it is important to understand these methods. 
+The term dynamic programming refers to a collection of algorithms that can be used to compute optimal policies given a perfect model of the environment as a Markov decision process (MDP). Keep in mind that classical DP algorithms are of limited utility in reinforcement learning both because of their assumption of a perfect model and because of their great computational expense, but they are still important theoretically. 
+
+DP provides an essential foundation for understanding the methods underlying many modern RL algorithms. In fact, all of these modern methods can be viewed as attempts to achieve much of the same effect as DP, only with less computation and without assuming a perfect model of the environment.
 
 ### Policy Iteration <a id="policy-iteration" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
@@ -643,6 +645,10 @@ where $a_{3: \infty}$ denote all the actions from the 3rd time step onwards, and
 
 </details>
 
+<br>
+<img src="./images/rl/rl-policy-iteration.png" alt="Policy Iteration Diagram">
+<br>
+
 ### Value Iteration <a id="value-iteration" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
 Value iteration is a method used to approximate the optimal action-value function $Q^\star$ directly, without alternating between value functions and policies as in policy iteration. The process starts with an initial value function $Q^{\star, 0}$, often initialized to zero for all state-action pairs. The algorithm then iteratively computes $Q^{\star, h}$ for each iteration $h = 1, 2, \ldots, H$ 
@@ -770,6 +776,10 @@ which leads directly to
 $$
 \left\| Q^{\star, H} - Q^\star \right\|_\infty \leq \gamma^H \frac{R_{\max}}{1 - \gamma}.
 $$
+
+<br>
+<img src="./images/rl/rl-value-iteration.png" alt="Policy Iteration Diagram">
+<br>
 
 #### <u>On the Use of Stationary Policies</u>
 
