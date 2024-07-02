@@ -49,6 +49,10 @@ const Button = styled.button<{ isVisible: boolean }>`
   z-index: 100;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   transition: opacity 0.5s ease-in-out;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `
 
 export default ScrollToTop
