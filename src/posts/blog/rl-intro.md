@@ -190,7 +190,11 @@ $$
 V^*(s)=\max _\pi V^\pi(s)
 $$
 
-To derive the Bellman equations for policy evaluation, we start by considering the expected discounted sum of rewards (or value) under a policy $\pi$ as described in Equations 1 and 2. By the definition of the state-value function $V^\pi(s)$ we have
+To derive the Bellman equations for policy evaluation, we start by considering the expected discounted sum of rewards (or value) under a policy $\pi$ as described in Equations 1 and 2. 
+
+#### <u>Bellman Equation for the State-Value Function</u>
+
+By the definition of the state-value function $V^\pi(s)$ we have
 
 $$
 V^\pi(s) = \mathbb{E} \left[ \sum_{t=1}^{\infty} \gamma^{t-1} r_t \mid \pi, s_1 = s \right].
@@ -231,6 +235,8 @@ Therefore,
 $$
 \textcolor{#DC143C}{V^\pi(s) = R(s, \pi(s)) + \gamma \mathbb{E}_{s' \sim P(\cdot \mid s, \pi(s))} \left[V^\pi(s') \right]}.
 $$
+
+#### <u>Bellman Equation for the Action-Value Function</u>
 
 Recall the definition of the action-value function $Q^\pi(s, a)$ in Equation 2 given by
 
