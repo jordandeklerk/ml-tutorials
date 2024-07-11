@@ -96,7 +96,7 @@ $$
 
 wherein each latent variable is represented by a distinct factor $q_n$.
 
-Contrary to the VI framework, the amortized family $\mathcal{Q}_{\mathrm{A}}$ leverages a stochastic inference function $f_{\phi}(x_n)$ to dictate the variational distribution of each latent variable $z_n$, typically instantiated through a neural network, facilitating the parameter mapping for each latent variable's approximating factor $q_n(z_n)$ (Ankush):
+Contrary to the VI framework, the amortized family $\mathcal{Q}_{\mathrm{A}}$ leverages a stochastic inference function $f_{\phi}(x_n)$ to dictate the variational distribution of each latent variable $z_n$, typically instantiated through a neural network, facilitating the parameter mapping for each latent variable's approximating factor $q_n(z_n)$:
 
 $$
 \begin{equation}
@@ -126,7 +126,7 @@ In essence, VAEs model the process of data generation through encoding to and de
 
 ### Inference in Variational Autoencoders <a id="inference-in-variational-autoencoders" style="padding-top: 70px; margin-top: -70px; display: block;"></a>
 
-Consider $x$ as the observed variable, \(z\) as the hidden variable, and $p(x, z)$ representing their joint distribution. For a dataset $X = \{x_1, x_2, \ldots, x_N\}$, our goal is to maximize the marginal $\log$-likelihood with respect to the model parameters $\theta$, expressed as
+Consider $x$ as the observed variable, $z$ as the hidden variable, and $p(x, z)$ representing their joint distribution. For a dataset $X = \{x_1, x_2, \ldots, x_N\}$, our goal is to maximize the marginal $\log$-likelihood with respect to the model parameters $\theta$, expressed as
 
 $$
 \log p_\theta(X) = \sum_{i=1}^N \log p_\theta(x_i) = \sum_{i=1}^N \log \int p_\theta(x_i, z_i) \, dz_i.
