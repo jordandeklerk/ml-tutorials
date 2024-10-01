@@ -103,7 +103,7 @@ const OuterWrapper = styled.div`
 
 const InnerWrapper = styled.div`
   width: 100%;
-  max-width: 50%;
+  max-width: 36%;
   margin: 0 auto;
   padding-bottom: var(--sizing-lg);
 
