@@ -107,20 +107,21 @@ const OuterWrapper = styled.div`
 
 const InnerWrapper = styled.div`
   width: 100%;
-  max-width: 50%;
+  max-width: 900px;
   margin: 0 auto;
-  padding-bottom: var(--sizing-lg);
+  padding: 0 var(--sizing-md);
 
   @media (max-width: ${({ theme }) => theme.device.lg}) {
-    max-width: 70%;
+    max-width: 700px;
   }
 
   @media (max-width: ${({ theme }) => theme.device.md}) {
-    max-width: 80%;
+    max-width: 600px;
   }
 
   @media (max-width: ${({ theme }) => theme.device.sm}) {
-    max-width: 90%;
+    max-width: 100%;
+    padding: 0 var(--sizing-sm);
   }
 `
 
