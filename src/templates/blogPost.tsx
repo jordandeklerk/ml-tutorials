@@ -96,23 +96,31 @@ const BlogPost: React.FC<PageProps<Queries.Query>> = ({ data }) => {
 const OuterWrapper = styled.div`
   margin-top: var(--sizing-xl);
 
-  @media (max-width: ${({ theme }) => theme.device.sm}) {
+  @media (max-width: ${({ theme }) => theme.device.md}) {
     margin-top: var(--sizing-lg);
+  }
+
+  @media (max-width: ${({ theme }) => theme.device.sm}) {
+    margin-top: var(--sizing-md);
   }
 `
 
 const InnerWrapper = styled.div`
   width: 100%;
-  max-width: 36%;
+  max-width: 50%;
   margin: 0 auto;
   padding-bottom: var(--sizing-lg);
 
+  @media (max-width: ${({ theme }) => theme.device.lg}) {
+    max-width: 70%;
+  }
+
   @media (max-width: ${({ theme }) => theme.device.md}) {
-    max-width: 75%;
+    max-width: 80%;
   }
 
   @media (max-width: ${({ theme }) => theme.device.sm}) {
-    max-width: 87.5%;
+    max-width: 90%;
   }
 `
 
